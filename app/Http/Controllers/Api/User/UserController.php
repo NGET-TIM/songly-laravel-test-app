@@ -37,7 +37,7 @@ class UserController extends Controller
         #test
         $device    = substr($request->userAgent() ?? '', 0, 255);
         $expiresAt = $request->remember ? null : now()->addMinutes(config('session.lifetime'));
-
+        // return user access token
         return response()->json([
             'access_token' => $user->createToken($device, expiresAt: $expiresAt)->plainTextToken,
         ], Response::HTTP_CREATED);
